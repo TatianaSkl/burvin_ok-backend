@@ -1,6 +1,7 @@
-const Product = require('../models/product');
+// const Product = require('../models/product');
 
 const { HttpError, ctrlWrapper } = require('../helpers');
+const { Product } = require('../models/product');
 
 const getProducts = async (req, res) => {
   const result = await Product.find();
