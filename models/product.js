@@ -1,4 +1,7 @@
 const { Schema, model } = require('mongoose');
+const Joi = require('joi');
+
+const { handleMongooseError } = require('../helpers');
 
 const productSchema = new Schema(
   {
@@ -22,6 +25,34 @@ const productSchema = new Schema(
   { versionKey: false }
 );
 
+productSchema.post('save', handleMongooseError);
+
+const addSchema = Joi.object({
+  article: Joi.string().required(),
+  name: Joi.string().required(),
+  view: Joi.string().required(),
+  options: Joi.array().items(
+    Joi.object({
+      color: Joi.string().required(),
+      sizes: Joi.array().items(Joi.string()).required(),
+    })
+  ),
+  price: Joi.string().required(),
+  originalPrice: Joi.string(),
+  discount: Joi.string(),
+  compound: Joi.string(),
+  fotos: Joi.array().items(Joi.string()),
+  video: Joi.string(),
+  season: Joi.string().required(),
+});
+
+const schemas = {
+  addSchema,
+};
+
 const Product = model('product', productSchema);
 
-module.exports = Product;
+module.exports = {
+  Product,
+  schemas,
+};

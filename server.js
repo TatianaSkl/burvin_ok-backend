@@ -1,5 +1,5 @@
 const app = require('./app');
-const { DB_HOST, PORT = 3000 } = process.env;
+const { DB_HOST, PORT = 5000 } = process.env;
 const mongoose = require('mongoose');
 
 mongoose
