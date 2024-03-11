@@ -38,11 +38,11 @@ const addSchema = Joi.object({
     })
   ),
   price: Joi.string().required(),
-  originalPrice: Joi.string(),
-  discount: Joi.string(),
+  originalPrice: Joi.string().allow(''),
+  discount: Joi.string().allow(''),
   compound: Joi.string(),
   fotos: Joi.array().items(Joi.string()),
-  video: Joi.string(),
+  video: Joi.string().allow(''),
   season: Joi.string().required(),
 });
 
