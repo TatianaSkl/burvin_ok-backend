@@ -10,6 +10,7 @@ const productSchema = new Schema(
     view: { type: String, required: true },
     options: [
       {
+        _id: false,
         color: { type: String, required: true },
         sizes: [{ type: String, required: true }],
       },
