@@ -6,6 +6,7 @@ const { handleMongooseError } = require('../helpers');
 const productSchema = new Schema(
   {
     article: { type: String, required: true },
+    status: { type: String },
     name: { type: String, required: true },
     view: { type: String, required: true },
     options: [
@@ -34,6 +35,7 @@ productSchema.post('save', handleMongooseError);
 
 const addSchema = Joi.object({
   article: Joi.string().required(),
+  status: Joi.string().allow(''),
   name: Joi.string().required(),
   view: Joi.string().required(),
   options: Joi.array().items(
